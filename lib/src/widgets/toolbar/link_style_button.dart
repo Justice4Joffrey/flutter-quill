@@ -62,7 +62,11 @@ class _LinkStyleButtonState extends State<LinkStyleButton> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isToggled = _getLinkAttributeValue() != null;
-    final pressedHandler = () => _openLinkDialog(context);
+    final pressedHandler = () => widget.controller.selection.extentOffset -
+                widget.controller.selection.baseOffset >
+            0
+        ? _openLinkDialog(context)
+        : {};
     return GestureDetector(
       onTap: () async {
         final dynamic tooltip = _toolTipKey.currentState;
